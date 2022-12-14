@@ -1,0 +1,49 @@
+{% extends "layout_fluid.html" %}
+{% load breadcrumb %}
+{% load i18n %}
+
+{% block title %}{% trans "Administration" %}{% endblock %}
+{% block h1 %}{% trans "Administration" %}{% endblock %}
+{% block page_id %}Administration{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    {% include "administration/sidebar.html" %}
+
+    <div class="col-md-10">
+
+      <h3>{{ system_directory_description }}</h3>
+
+      <div id="directories"></div>
+
+      {% if locations %}
+        <table class="table">
+        <thead>
+          <tr>
+            <th>{% trans "Description" %}</th>
+            <th>{% trans "Path" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+          <tr>
+            <td>{{ location.description }}</td>
+            <td>{{ location.path }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+      {% else %}
+        <p>{% trans "No available locations." %}</p>
+      {% endif %}
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
